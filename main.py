@@ -3,6 +3,8 @@ from datetime import datetime
 
 user_TODO = {}
 now = datetime.now()
+read_TODO = {}
+
 
 # get task info
 def getTask():
@@ -20,12 +22,23 @@ def getTask():
 
 
 # update the status in progress, done or not done
-def updateTask():
-    updatedStatus = input("What is the current ")
+def updateStatus():
+    status = json.loads("tasks.json")
+    updateTask = input("What task would you like to update: ")
 
 # remove task
 def deleteTask():
     pass
+
+
+def showTODO():
+    userOption = input("Do you want to show your current to-do list Y/N: ")
+    if userOption == "y":
+        with open("tasks.json") as read:
+            loadFile = json.load(read)
+            print(loadFile)
+    else:
+        print("Nothing")
 
 def writeToJason():
     file_name = "tasks.json"
@@ -36,5 +49,6 @@ def writeToJason():
 def runALL():
     getTask()
     writeToJason()
+    showTODO()
 
 runALL()
