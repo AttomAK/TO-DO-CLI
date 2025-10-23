@@ -6,6 +6,7 @@ now = datetime.now()
 read_TODO = {}
 
 
+
 # get task info
 def getTask():
 
@@ -22,13 +23,28 @@ def getTask():
 
 
 # update the status in progress, done or not done
-def updateStatus():
-    status = json.loads("tasks.json")
-    updateTask = input("What task would you like to update: ")
+def updateStatus(numTasks):
+
+    with open("tasks.json", "r") as file:
+        data = json.load("tasks.json")
+        print(data)
+    
+    updateTask = int(input("What task would you like to update ?: "))
+
+    if updateTask in range(numTasks):
+        newStatus = input("What is the new status of this task: ")
+        numTasks[updateTask] = []
+
+        
+        
+
+        
 
 # remove task
 def deleteTask():
     pass
+
+    
 
 
 def showTODO():
@@ -38,7 +54,7 @@ def showTODO():
             loadFile = json.load(read)
             print(loadFile)
     else:
-        print("Nothing")
+        return None
 
 def writeToJason():
     file_name = "tasks.json"
